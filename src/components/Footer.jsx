@@ -2,10 +2,10 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer style={{ textAlign: 'center', padding: '1rem', background: '#eee' }}>
-      <p>© 2025 Election Monitoring System | Built by Pujitha</p>
+    <footer style={{ backgroundColor: '#282c34', color: 'white', padding: '1rem', textAlign: 'center' }}>
+      &copy; 2025 My Election App
     </footer>
   )
 }
 
-export default Footer
+export default Footer;

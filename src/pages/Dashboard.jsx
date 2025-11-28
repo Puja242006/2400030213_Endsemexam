@@ -1,12 +1,7 @@
 import React from 'react'
 
 function Dashboard() {
-  return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h2>Election Monitoring Dashboard</h2>
-      <p>Welcome! View the live election data, complaints, and observations here.</p>
-    </div>
-  )
+  return <h1>Dashboard Page</h1>
 }
 
-export default Dashboard
+export default Dashboard;

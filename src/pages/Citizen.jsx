@@ -1,12 +1,7 @@
 import React from 'react'
 
 function Citizen() {
-  return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h2>Citizen Portal</h2>
-      <p>Submit your complaints or reports about any election irregularities here.</p>
-    </div>
-  )
+  return <h1>Citizen Page</h1>
 }
 
-export default Citizen
+export default Citizen;

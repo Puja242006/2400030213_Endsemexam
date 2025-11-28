@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>College Portal Theme Switcher</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React and ReactDOM CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <script>
+    const { useState, useContext, createContext } = React;
+
+    // 1. Theme Context
+    const ThemeContext = createContext();
+
+    // 2. Theme Provider
+    const ThemeProvider = ({ children }) => {
+      const [theme, setTheme] = useState("light");
+
+      const toggleTheme = () => {
+        setTheme(prev => prev === "light" ? "dark" : "light");
+      };
+
+      return (
+        React.createElement(ThemeContext.Provider, { value: { theme, toggleTheme } }, children)
+      );
+    };
+
+    // 3. Theme Switcher Button
+    const ThemeSwitcher = () => {
+      const { theme, toggleTheme } = useContext(ThemeContext);
+
+      return React.createElement(
+        "button",
+        {
+          onClick: toggleTheme,
+          style: {
+            padding: "10px 20px",
+            margin: "20px 0",
+            cursor: "pointer",
+            background: theme === "light" ? "#000" : "#fff",
+            color: theme === "light" ? "#fff" : "#000",
+            border: "none",
+            borderRadius: "5px"
+          }
+        },
+        `Switch to ${theme === "light" ? "Dark" : "Light"} Mode`
+      );
+    };
+
+    // 4. College Portal Component
+    const CollegePortal = () => {
+      const { theme } = useContext(ThemeContext);
+
+      return React.createElement(
+        "div",
+        {
+          style: {
+            height: "100vh",
+            padding: "50px",
+            transition: "all 0.3s",
+            backgroundColor: theme === "light" ? "#f0f0f0" : "#1c1c1c",
+            color: theme === "light" ? "#000" : "#fff"
+          }
+        },
+        React.createElement("h1", null, "College Portal"),
+        React.createElement("p", null, "Welcome to your college dashboard!"),
+        React.createElement(ThemeSwitcher)
+      );
+    };
+
+    // 5. App
+    const App = () => React.createElement(
+      ThemeProvider,
+      null,
+      React.createElement(CollegePortal)
+    );
+
+    // 6. Render
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(React.createElement(App));
+  </script>
+</body>
+</html>
